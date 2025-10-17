@@ -10,7 +10,7 @@ def fuzz_url(url: str, method: str, wordlist_filename: str, output_filename: str
         current_url = url.replace("FUZZ", word)
         current_url = current_url.strip()
 
-        result = http_requests.do_request(current_url, method, _get_cookies(optional_arguments, word))
+        result = http_requests.do_request(current_url, method, _get_cookies(optional_arguments, word), None)
         output_file.write(f"{current_url}, {result.status_code}, {len(result.content)}, {word}\n")
 
         print(f"\rProgress: {cleared}", end="", flush=True)
