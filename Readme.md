@@ -15,6 +15,7 @@ And it is also faster than the free tier of BurpSuite intruder, so theres that.
 To run the tool, you have to provide arguments for:  
 - --url (the url to fuzz)
 - --list (the wordlist to use)
+- FUZZ keyword (add to url/cookie/data) will be replaced by each of the lines in the provided wordlist  
 
 Optional arguments:  
 - -m/--method (the http method to use (get/post)) *currently only get works
