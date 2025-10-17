@@ -5,7 +5,8 @@ def do_request(request: str, request_type: str, cookies: dict[str, str], data: d
         case "get":
             return requests.get(request, cookies=cookies)
         case "post":
-            return requests.post(request, cookies=cookies)
+            # Currently assumes json
+            return _do_post(request, cookies, data, "json")
 
 
 def _do_post(request: str, cookies: dict[str, str], data: dict[str, str], data_type: str):

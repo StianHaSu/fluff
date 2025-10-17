@@ -32,6 +32,7 @@ def main():
 
     optional_arguments = {
         "cookies": args.cookie,
+        "data": args.data
     }
     
     print_intro()

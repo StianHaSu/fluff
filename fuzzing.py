@@ -16,7 +16,10 @@ def fuzz_url(url: str, method: str, wordlist_filename: str, output_filename: str
         current_url = url.replace("FUZZ", word)
         current_url = current_url.strip()
 
-        result = http_requests.do_request(current_url, method, _get_cookies(optional_arguments, word), None)
+        cookies = _get_optional_values(optional_arguments, "cookies", word)
+        data = _get_optional_values(optional_arguments, "data", word)
+        
+        result = http_requests.do_request(current_url, method, cookies, data)
         output_file.write(f"{current_url},{result.status_code},{len(result.content)},{word}\n")
 
         print(f"\rProgress: {cleared}/{total}", end="", flush=True)
@@ -25,8 +28,8 @@ def fuzz_url(url: str, method: str, wordlist_filename: str, output_filename: str
     output_file.close()
     wordlist.close()
 
-def _get_cookies(optional_arguments: dict[str, any], word: str) -> dict[str, str]:
-    all_cookies = optional_arguments["cookies"]
+def _get_optional_values(optional_arguments: dict[str, any], key_word:str, word: str) -> dict[str, str]:
+    all_cookies = optional_arguments[key_word]
     if not all_cookies:
         return {}
 
