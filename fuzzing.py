@@ -4,6 +4,7 @@ def fuzz_url(url: str, method: str, wordlist_filename: str, output_filename: str
     wordlist = open(wordlist_filename, 'r')
     output_file = open(output_filename, 'w+')
 
+    output_file.write(f"url,status_code,content_length,fuzz\n")
     cleared = 0
     for word in wordlist:
         word = word.replace("\n", "")
@@ -11,7 +12,7 @@ def fuzz_url(url: str, method: str, wordlist_filename: str, output_filename: str
         current_url = current_url.strip()
 
         result = http_requests.do_request(current_url, method, _get_cookies(optional_arguments, word), None)
-        output_file.write(f"{current_url}, {result.status_code}, {len(result.content)}, {word}\n")
+        output_file.write(f"{current_url},{result.status_code},{len(result.content)},{word}\n")
 
         print(f"\rProgress: {cleared}", end="", flush=True)
         cleared += 1
@@ -24,4 +25,4 @@ def _get_cookies(optional_arguments: dict[str, any], word: str) -> dict[str, str
     if not all_cookies:
         return {}
 
-    return {cookie.split(",")[0].strip() : cookie.strip().split(",")[1].replace("FUZZ", word) for cookie in all_cookies}
+    return {cookie.split(":")[0].strip() : cookie.strip().split(":")[1].replace("FUZZ", word) for cookie in all_cookies}

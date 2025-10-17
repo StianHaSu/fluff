@@ -18,12 +18,13 @@ To run the tool, you have to provide arguments for:
 
 Optional arguments:  
 - -m/--method (the http method to use (get/post)) *currently only get works
-- -c/--cookie (optional cookies) on the format (-c [cookiename],[cookievalue])  
-you can add multiple cookies like this: -c [cookiename],[cookievalue] -c [cookiename2],[cookievalue2]
+- -c/--cookie (optional cookies) on the format (-c [cookiename]:[cookievalue])  
+you can add multiple cookies like this: -c [cookiename]:[cookievalue] -c [cookiename2]:[cookievalue2]  
+- -o/--output (optional outputfile, defaults to fuzzing_output.csv)
 
 ### Examples
 **Simple get fuzz:**  
 python3 fluff.py --url example.com/FUZZ --list wordlist.txt -m get
 
 **Get with cookie fuzz:**  
-python3 fluff.py --url example.com --list wordlist.txt -m get -c myid,1FUZZ3
+python3 fluff.py --url example.com --list wordlist.txt -m get -c myid:1FUZZ3
