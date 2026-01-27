@@ -8,7 +8,7 @@ fluff is basically like ffuf, with a few exceptions:
 - It is considerably slower  
 - It is way less feature rich  
 
-But what fluff lacks in speed and features, it makes ups for in doing the job (some times).
+But what fluff lacks in speed and features, it makes up for in doing the job (some times).
 And it is also faster than the free tier of BurpSuite intruder, so theres that.
 
 ## Usage  
